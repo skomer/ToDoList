@@ -35,6 +35,10 @@ public class ToDoItem {
         this.description = newDescription;
     }
 
+    public int getCategoryIndex() {
+        return this.categoryIndex;
+    }
+
     public String getCategory() {
         return categories[this.categoryIndex];
     }

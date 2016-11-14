@@ -8,6 +8,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
     private ArrayList<String> setUpToDoItemList() {
         ArrayList<String> toDoItemList = new ArrayList<String>();
 
@@ -55,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < strings.length; i++) {
             toDoItemList.add(strings[i]);
         }
+
         return toDoItemList;
     }
 
