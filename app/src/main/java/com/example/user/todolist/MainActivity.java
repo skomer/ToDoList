@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selected = (String)mListView.getItemAtPosition(position);
                 Log.d("ListView:", selected + " selected");
+                Intent intent = new Intent(MainActivity.this, ViewItemActivity.class);
+                startActivity(intent);
             }
         });
     }

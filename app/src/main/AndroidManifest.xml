@@ -21,6 +21,12 @@
             >
         </activity>
 
+        <activity android:name=".ViewItemActivity"
+            android:label="@string/view_item_header"
+            android:parentActivityName=".MainActivity"
+            >
+        </activity>
+
     </application>
 
 </manifest>

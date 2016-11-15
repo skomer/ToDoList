@@ -12,4 +12,5 @@
     <string name="save_new_item">Save item</string>
     <string name="title_label">What do you want to do?</string>
     <string name="description_label">Details:</string>
+    <string name="view_item_header">This item</string>
 </resources>
