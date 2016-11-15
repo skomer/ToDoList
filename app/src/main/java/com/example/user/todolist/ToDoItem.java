@@ -5,18 +5,37 @@ import java.util.Date;
 
 public class ToDoItem {
 
+    public int id;
     public String title;
     public String description;
-    public Date whenCompleted;
+    public String whenCompleted;
     public int categoryIndex;
 
     public static final String[] categories = {"low", "medium", "high"};
+
+    public ToDoItem() {}
 
     public ToDoItem(String title, String description, int categoryIndex) {
         this.title = title;
         this.description = description;
         this.categoryIndex = categoryIndex;
         this.whenCompleted = null;
+    }
+
+    public ToDoItem(int id, String title, String description, String whenCompleted, int categoryIndex) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.whenCompleted = whenCompleted;
+        this.categoryIndex = categoryIndex;
+    }
+
+    public int getID() {
+        return this.id;
+    }
+
+    public void setID(int newID) {
+        this.id = newID;
     }
 
     public String getTitle() {
@@ -47,19 +66,13 @@ public class ToDoItem {
         this.categoryIndex = newCategoryIndex;
     }
 
-    public Date getWhenCompleted() {
+    public String getWhenCompleted() {
         return this.whenCompleted;
     }
 
     public void setWhenCompleted() {
         Date dateNow = new Date();
-        this.whenCompleted = dateNow;
+        this.whenCompleted = dateNow.toString();
     }
-
-
-
-
-
-
 
 }

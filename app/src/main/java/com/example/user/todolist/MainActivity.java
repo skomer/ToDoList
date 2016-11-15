@@ -1,26 +1,37 @@
 package com.example.user.todolist;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
+    Button mNewButton;
     ListView mListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mNewButton = (Button)findViewById(R.id.new_button);
+
+        mNewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("ToDoList", "'new item' button clicked");
+                Intent intent = new Intent(MainActivity.this, NewItemActivity.class);
+                startActivity(intent);
+            }
+        });
 
         mListView = (ListView)findViewById(R.id.todo_listview);
 
@@ -44,22 +55,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private ArrayList<String> setUpToDoItemList() {
-        ArrayList<String> toDoItemList = new ArrayList<String>();
 
-        String[] strings = {
-                "string1",
-                "string2",
-                "string3",
-                "string4",
-                "string5",
-                "string6",
-        };
+        DatabaseHandler dbHandler = new DatabaseHandler(MainActivity.this);
+        ArrayList<String> allTitles = dbHandler.getAllTitles();
 
-        for (int i = 0; i < strings.length; i++) {
-            toDoItemList.add(strings[i]);
-        }
-
-        return toDoItemList;
+        return allTitles;
     }
 
 }

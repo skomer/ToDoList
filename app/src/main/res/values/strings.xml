@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">ToDoList</string>
+    <string name="new_item_header">Enter the details</string>
+    <string name="new_item">Enter and save your new list item here</string>
+    <string name="add_new_item">Add an item</string>
+    <string name="new_item_title">new item title</string>
+    <string name="new_item_description">new item description</string>
+    <string name="priority_options">Priority:</string>
+    <string name="priority_high">high</string>
+    <string name="priority_medium">medium</string>
+    <string name="priority_low">low</string>
+    <string name="save_new_item">Save item</string>
+    <string name="title_label">What do you want to do?</string>
+    <string name="description_label">Details:</string>
 </resources>
