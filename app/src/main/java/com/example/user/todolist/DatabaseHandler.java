@@ -117,6 +117,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     }
 
+
     public ArrayList<String> getAllTitles() {
 
         SQLiteDatabase write_db = this.getWritableDatabase();
@@ -135,6 +136,47 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return toDoTitlesList;
 
     }
+
+    public ArrayList<Integer> getAllIds() {
+
+        SQLiteDatabase write_db = this.getWritableDatabase();
+        ArrayList<Integer> toDoIdsList = new ArrayList<>();
+        String selectQuery = "SELECT id FROM " + TABLE_ITEMS;
+        Cursor cursor = write_db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(0);
+                toDoIdsList.add(id);
+            } while (cursor.moveToNext());
+        }
+
+        write_db.close();
+        return toDoIdsList;
+
+    }
+
+//    public String getTitleOrDescriptionById(int id, String columnName) {
+//
+//        SQLiteDatabase write_db = this.getWritableDatabase();
+//        String selectQuery = "SELECT " + columnName + "FROM " + TABLE_ITEMS + "WHERE id = " + Integer.toString(id);
+//
+//        Cursor cursor = write_db.rawQuery(selectQuery, null);
+//
+//        if (cursor.moveToFirst()) {
+//            do {
+//                String columnName = cursor.getInt(0);
+//                toDoIdsList.add(id);
+//            } while (cursor.moveToNext());
+//        }
+//
+//        write_db.close();
+//        return toDoIdsList;
+//
+//
+//    }
+
+
 
     public int updateItem(ToDoItem item) {
 

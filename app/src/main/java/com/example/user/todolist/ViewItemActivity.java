@@ -26,7 +26,7 @@ public class ViewItemActivity extends AppCompatActivity {
         Bundle extras = intent.getExtras();
         String title = extras.getString("title");
         mItemTitle.setText(title);
-        
+
 
     }
 

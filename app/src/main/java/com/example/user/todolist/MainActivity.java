@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button mNewButton;
     ListView mListView;
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,12 +58,28 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+//    private ArrayList<String> setUpToDoItemList() {
+//
+//        DatabaseHandler dbHandler = new DatabaseHandler(MainActivity.this);
+//        ArrayList<String> allTitles = dbHandler.getAllTitles();
+//        return allTitles;
+//    }
+
     private ArrayList<String> setUpToDoItemList() {
 
         DatabaseHandler dbHandler = new DatabaseHandler(MainActivity.this);
-        ArrayList<String> allTitles = dbHandler.getAllTitles();
+        ArrayList<String> allTitles = new ArrayList<>();
+        ArrayList<Integer> allIds = dbHandler.getAllIds();
+        Log.d("allIds", allIds.toString());
+
+        for (int i = 0; i < allIds.size(); i++) {
+            ToDoItem item = dbHandler.getItem(i+1);
+            allTitles.add(item.title);
+        }
 
         return allTitles;
     }
+
+
 
 }
