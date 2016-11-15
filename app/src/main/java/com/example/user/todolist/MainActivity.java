@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 String selected = (String)mListView.getItemAtPosition(position);
                 Log.d("ListView:", selected + " selected");
                 Intent intent = new Intent(MainActivity.this, ViewItemActivity.class);
+                intent.putExtra("title", selected);
                 startActivity(intent);
             }
         });
