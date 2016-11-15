@@ -13,14 +13,14 @@
 
     <EditText
         android:id="@+id/new_item_title"
-        android:title="@string/title_label"
+        android:hint="@string/title_hint"
         android:textSize="18dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/new_item_description"
-        android:label="@string/description_label"
+        android:hint="@string/description_hint"
         android:textSize="18dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
