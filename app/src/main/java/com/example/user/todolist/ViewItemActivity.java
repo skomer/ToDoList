@@ -3,12 +3,11 @@ package com.example.user.todolist;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.TextView;
+import android.widget.Toast;
 
 public class ViewItemActivity extends AppCompatActivity {
 
@@ -25,7 +24,6 @@ public class ViewItemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_item);
         mItemTitle = (EditText) findViewById(R.id.view_item_title);
         mItemDescription = (EditText) findViewById(R.id.view_item_description);
-        //mPriorityDisplay = (TextView) findViewById(R.id.//go and get the priority)
 
         mSaveButton = (Button) findViewById(R.id.save_button);
 
@@ -67,6 +65,9 @@ public class ViewItemActivity extends AppCompatActivity {
 
                 DatabaseHandler dbHandler = new DatabaseHandler(ViewItemActivity.this);
                 dbHandler.updateItem(mSelectedItem);
+
+                Toast toast = Toast.makeText(ViewItemActivity.this, R.string.item_save, Toast.LENGTH_SHORT);
+                toast.show();
 
                 Intent intent = new Intent(ViewItemActivity.this, MainActivity.class);
                 startActivity(intent);

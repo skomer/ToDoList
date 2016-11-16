@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class NewItemActivity extends AppCompatActivity {
@@ -38,6 +39,9 @@ public class NewItemActivity extends AppCompatActivity {
                 ToDoItem newItem = new ToDoItem(newTitle, newDescription, mCategoryIndex);
                 DatabaseHandler databaseHandler = new DatabaseHandler(NewItemActivity.this);
                 databaseHandler.addToDoItem(newItem);
+
+                Toast toast = Toast.makeText(NewItemActivity.this, R.string.item_save, Toast.LENGTH_SHORT);
+                toast.show();
 
                 Intent intent = new Intent(NewItemActivity.this, MainActivity.class);
                 startActivity(intent);

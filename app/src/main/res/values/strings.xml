@@ -13,4 +13,5 @@
     <string name="title_hint">What do you want to do?</string>
     <string name="description_hint">Details:</string>
     <string name="view_item_header">This item</string>
+    <string name="item_save">Saved</string>
 </resources>
