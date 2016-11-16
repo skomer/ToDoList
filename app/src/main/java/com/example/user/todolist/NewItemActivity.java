@@ -17,7 +17,7 @@ public class NewItemActivity extends AppCompatActivity {
     Button mSaveButton;
     EditText mTitleTextBox;
     EditText mDescriptionTextBox;
-    int mPriority;
+    int mCategoryIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class NewItemActivity extends AppCompatActivity {
                 String newTitle = mTitleTextBox.getText().toString();
                 String newDescription = mDescriptionTextBox.getText().toString();
 
-                ToDoItem newItem = new ToDoItem(newTitle, newDescription, mPriority);
+                ToDoItem newItem = new ToDoItem(newTitle, newDescription, mCategoryIndex);
                 DatabaseHandler databaseHandler = new DatabaseHandler(NewItemActivity.this);
                 databaseHandler.addToDoItem(newItem);
 
@@ -50,15 +50,15 @@ public class NewItemActivity extends AppCompatActivity {
         switch(view.getId()) {
             case R.id.radio_high:
                 if (selected)
-                    mPriority = 2;
+                    mCategoryIndex = 2;
                 break;
             case R.id.radio_medium:
                 if (selected)
-                    mPriority = 1;
+                    mCategoryIndex = 1;
                 break;
             case R.id.radio_low:
                 if (selected)
-                    mPriority = 0;
+                    mCategoryIndex = 0;
                 break;
         }
     }

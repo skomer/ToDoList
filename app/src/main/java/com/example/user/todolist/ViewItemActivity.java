@@ -17,6 +17,7 @@ public class ViewItemActivity extends AppCompatActivity {
     Button mSaveButton;
     ToDoItem mSelectedItem;
     RadioButton mRadioButton;
+    int mCategoryIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +49,11 @@ public class ViewItemActivity extends AppCompatActivity {
         }
         mRadioButton.setChecked(true);
 
-
         String title = mSelectedItem.title;
         String description = mSelectedItem.description;
 
         mItemTitle.setText(title);
         mItemDescription.setText(description);
-
 
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +63,7 @@ public class ViewItemActivity extends AppCompatActivity {
 
                 mSelectedItem.setTitle(newTitle);
                 mSelectedItem.setDescription(newDescription);
+                mSelectedItem.setCategory(mCategoryIndex);
 
                 DatabaseHandler dbHandler = new DatabaseHandler(ViewItemActivity.this);
                 dbHandler.updateItem(mSelectedItem);
@@ -73,11 +73,24 @@ public class ViewItemActivity extends AppCompatActivity {
             }
         });
 
+    }
 
-
-
-
-
+    public void onRadioButtonClicked(View view) {
+        boolean selected = ((RadioButton) view).isChecked();
+        switch(view.getId()) {
+            case R.id.radio_high:
+                if (selected)
+                    mCategoryIndex = 2;
+                break;
+            case R.id.radio_medium:
+                if (selected)
+                    mCategoryIndex = 1;
+                break;
+            case R.id.radio_low:
+                if (selected)
+                    mCategoryIndex = 0;
+                break;
+        }
     }
 
 }
