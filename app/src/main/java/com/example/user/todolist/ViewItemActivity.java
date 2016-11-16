@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 public class ViewItemActivity extends AppCompatActivity {
@@ -15,6 +16,7 @@ public class ViewItemActivity extends AppCompatActivity {
     EditText mItemDescription;
     Button mSaveButton;
     ToDoItem mSelectedItem;
+    RadioButton mRadioButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,7 @@ public class ViewItemActivity extends AppCompatActivity {
         mItemTitle = (EditText) findViewById(R.id.view_item_title);
         mItemDescription = (EditText) findViewById(R.id.view_item_description);
         //mPriorityDisplay = (TextView) findViewById(R.id.//go and get the priority)
+
         mSaveButton = (Button) findViewById(R.id.save_button);
 
         Intent intent = getIntent();
@@ -31,6 +34,20 @@ public class ViewItemActivity extends AppCompatActivity {
 
         DatabaseHandler dbHandler = new DatabaseHandler(this);
         mSelectedItem = dbHandler.getItem(itemId);
+
+        int categoryIndex = mSelectedItem.categoryIndex;
+
+        if (categoryIndex == 0) {
+            mRadioButton = (RadioButton) findViewById(R.id.radio_low);
+        }
+        else if (categoryIndex == 1) {
+            mRadioButton = (RadioButton) findViewById(R.id.radio_medium);
+        }
+        else if (categoryIndex == 2) {
+            mRadioButton = (RadioButton) findViewById(R.id.radio_high);
+        }
+        mRadioButton.setChecked(true);
+
 
         String title = mSelectedItem.title;
         String description = mSelectedItem.description;
@@ -42,14 +59,12 @@ public class ViewItemActivity extends AppCompatActivity {
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Log.d("ToDoList", "'save item' button clicked");
                 String newTitle = mItemTitle.getText().toString();
                 String newDescription = mItemDescription.getText().toString();
 
                 mSelectedItem.setTitle(newTitle);
                 mSelectedItem.setDescription(newDescription);
 
-                //ToDoItem newItem = new ToDoItem(newTitle, newDescription, mPriority);
                 DatabaseHandler dbHandler = new DatabaseHandler(ViewItemActivity.this);
                 dbHandler.updateItem(mSelectedItem);
 
