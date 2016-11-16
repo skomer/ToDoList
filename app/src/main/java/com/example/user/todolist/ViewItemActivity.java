@@ -8,11 +8,6 @@ import android.widget.TextView;
 
 public class ViewItemActivity extends AppCompatActivity {
 
-    //TextView mItemTitle;
-    //TextView mItemDescription;
-    TextView mPriorityDisplay;
-    Button mSaveButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,12 +19,17 @@ public class ViewItemActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        String title = extras.getString("title");
-        mItemTitle.setText(title);
+        int itemId = extras.getInt("id");
 
+        DatabaseHandler dbHandler = new DatabaseHandler(this);
+        ToDoItem selectedItem = dbHandler.getItem(itemId);
+
+        String title = selectedItem.title;
+        String description = selectedItem.description;
+
+        mItemTitle.setText(title);
+        mItemDescription.setText(description);
 
     }
-
-
 
 }

@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 
@@ -93,10 +93,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     }
 
-    public List<ToDoItem> getAllItems() {
+    public ArrayList<ToDoItem> getAllItems() {
 
         SQLiteDatabase write_db = this.getWritableDatabase();
-        List<ToDoItem> toDoList = new ArrayList<ToDoItem>();
+        ArrayList<ToDoItem> toDoList = new ArrayList<ToDoItem>();
         String selectQuery = "SELECT * FROM " + TABLE_ITEMS;
         Cursor cursor = write_db.rawQuery(selectQuery, null);
 
@@ -116,67 +116,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return toDoList;
 
     }
-
-
-    public ArrayList<String> getAllTitles() {
-
-        SQLiteDatabase write_db = this.getWritableDatabase();
-        ArrayList<String> toDoTitlesList = new ArrayList<String>();
-        String selectQuery = "SELECT title FROM " + TABLE_ITEMS;
-        Cursor cursor = write_db.rawQuery(selectQuery, null);
-
-        if (cursor.moveToFirst()) {
-            do {
-                String title = cursor.getString(0);
-                toDoTitlesList.add(title);
-            } while (cursor.moveToNext());
-        }
-
-        write_db.close();
-        return toDoTitlesList;
-
-    }
-
-    public ArrayList<Integer> getAllIds() {
-
-        SQLiteDatabase write_db = this.getWritableDatabase();
-        ArrayList<Integer> toDoIdsList = new ArrayList<>();
-        String selectQuery = "SELECT id FROM " + TABLE_ITEMS;
-        Cursor cursor = write_db.rawQuery(selectQuery, null);
-
-        if (cursor.moveToFirst()) {
-            do {
-                int id = cursor.getInt(0);
-                toDoIdsList.add(id);
-            } while (cursor.moveToNext());
-        }
-
-        write_db.close();
-        return toDoIdsList;
-
-    }
-
-//    public String getTitleOrDescriptionById(int id, String columnName) {
-//
-//        SQLiteDatabase write_db = this.getWritableDatabase();
-//        String selectQuery = "SELECT " + columnName + "FROM " + TABLE_ITEMS + "WHERE id = " + Integer.toString(id);
-//
-//        Cursor cursor = write_db.rawQuery(selectQuery, null);
-//
-//        if (cursor.moveToFirst()) {
-//            do {
-//                String columnName = cursor.getInt(0);
-//                toDoIdsList.add(id);
-//            } while (cursor.moveToNext());
-//        }
-//
-//        write_db.close();
-//        return toDoIdsList;
-//
-//
-//    }
-
-
 
     public int updateItem(ToDoItem item) {
 
