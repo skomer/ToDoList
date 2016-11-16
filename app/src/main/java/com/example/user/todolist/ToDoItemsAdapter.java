@@ -24,6 +24,10 @@ public class ToDoItemsAdapter extends ArrayAdapter<ToDoItem> {
         }
         TextView title = (TextView) convertView.findViewById(R.id.title);
         title.setText(toDoItem.title);
+
+        TextView categoryTV = (TextView) convertView.findViewById(R.id.category);
+        categoryTV.setText(toDoItem.getCategory());
+
         return convertView;
     }
 
