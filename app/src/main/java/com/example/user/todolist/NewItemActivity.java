@@ -24,10 +24,10 @@ public class NewItemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_item);
-        mNewItem = (TextView) findViewById(R.id.new_item);
+        mNewItem = (TextView) findViewById(R.id.item_title_text);
         mSaveButton = (Button) findViewById(R.id.save_button);
-        mTitleTextBox = (EditText) findViewById(R.id.new_item_title);
-        mDescriptionTextBox = (EditText) findViewById(R.id.new_item_description);
+        mTitleTextBox = (EditText) findViewById(R.id.item_title_edit);
+        mDescriptionTextBox = (EditText) findViewById(R.id.item_description_edit);
 
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override

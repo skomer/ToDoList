@@ -5,9 +5,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Date;
 
 public class ViewItemActivity extends AppCompatActivity {
 
@@ -16,14 +20,17 @@ public class ViewItemActivity extends AppCompatActivity {
     Button mSaveButton;
     ToDoItem mSelectedItem;
     RadioButton mRadioButton;
+    CheckBox mCompletedCheckBox;
+    CheckBox whenCompletedCheckBox;
+    String mWhenCompletedInsert;
     int mCategoryIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_item);
-        mItemTitle = (EditText) findViewById(R.id.view_item_title);
-        mItemDescription = (EditText) findViewById(R.id.view_item_description);
+        mItemTitle = (EditText) findViewById(R.id.item_title_edit);
+        mItemDescription = (EditText) findViewById(R.id.item_description_edit);
 
         mSaveButton = (Button) findViewById(R.id.save_button);
 
@@ -34,24 +41,32 @@ public class ViewItemActivity extends AppCompatActivity {
         DatabaseHandler dbHandler = new DatabaseHandler(this);
         mSelectedItem = dbHandler.getItem(itemId);
 
-        int categoryIndex = mSelectedItem.categoryIndex;
 
+//        Set up title and description area
+        String title = mSelectedItem.title;
+        String description = mSelectedItem.description;
+        mItemTitle.setText(title);
+        mItemDescription.setText(description);
+
+
+//        Set up category/priority radio buttons
+        int categoryIndex = mSelectedItem.categoryIndex;
         if (categoryIndex == 0) {
             mRadioButton = (RadioButton) findViewById(R.id.radio_low);
-        }
-        else if (categoryIndex == 1) {
+        } else if (categoryIndex == 1) {
             mRadioButton = (RadioButton) findViewById(R.id.radio_medium);
-        }
-        else if (categoryIndex == 2) {
+        } else if (categoryIndex == 2) {
             mRadioButton = (RadioButton) findViewById(R.id.radio_high);
         }
         mRadioButton.setChecked(true);
 
-        String title = mSelectedItem.title;
-        String description = mSelectedItem.description;
+//        Set up whenCompleted checkbox
+        String whenCompleted = mSelectedItem.whenCompleted;
+        if (whenCompleted != null) {
+            mCompletedCheckBox.setChecked(true);
+            mWhenCompletedInsert = mSelectedItem.getWhenCompleted();
+        }
 
-        mItemTitle.setText(title);
-        mItemDescription.setText(description);
 
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +93,7 @@ public class ViewItemActivity extends AppCompatActivity {
 
     public void onRadioButtonClicked(View view) {
         boolean selected = ((RadioButton) view).isChecked();
-        switch(view.getId()) {
+        switch (view.getId()) {
             case R.id.radio_high:
                 if (selected)
                     mCategoryIndex = 2;
@@ -92,6 +107,67 @@ public class ViewItemActivity extends AppCompatActivity {
                     mCategoryIndex = 0;
                 break;
         }
+    }
+
+
+
+//    mCompletedCheckBox.setOnClickListener(new View.OnClickListener() {
+//
+//
+//        public void addListenerOnCheckBox() {
+//
+//            mCompletedCheckBox = (CheckBox) findViewById(R.id.checkbox_box);
+//            mCompletedCheckBox.setOnClickListener(new View.OnClickListener() {
+//
+//                public void onCheckboxClicked(View view) {
+//
+//                    String dateCompleted;
+//                    if (((CheckBox) view).isChecked()) {
+//                        mSelectedItem.setWhenCompleted();
+//                        dateCompleted = mSelectedItem.getWhenCompleted();
+//                        TextView whenCompletedInsert = (TextView) findViewById(R.id.when_completed_insert);
+//                        whenCompletedInsert.setText(dateCompleted);
+//                    }
+//                }
+//
+//            });
+//
+//        }
+//
+//
+//    })
+
+
+
+    public void onCheckboxClicked(View view) {
+
+        String dateCompleted;
+        if (((CheckBox) view).isChecked()) {
+            mSelectedItem.setWhenCompleted();
+            dateCompleted = mSelectedItem.getWhenCompleted();
+            TextView whenCompletedInsert = (TextView) findViewById(R.id.when_completed_insert);
+            whenCompletedInsert.setText(dateCompleted);
+        }
+    }
+
+
+    public void addListenerOnCheckBox() {
+
+        whenCompletedCheckBox = (CheckBox) findViewById(R.id.checkbox_box);
+
+        whenCompletedCheckBox.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                String dateCompleted;
+                if (((CheckBox) view).isChecked()) {
+                    mSelectedItem.setWhenCompleted();
+                    dateCompleted = mSelectedItem.getWhenCompleted();
+                    TextView whenCompletedInsert = (TextView) findViewById(R.id.when_completed_insert);
+                    whenCompletedInsert.setText(dateCompleted);
+                }
+            }
+        });
     }
 
 }

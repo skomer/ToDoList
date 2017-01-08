@@ -20,7 +20,7 @@ public class ToDoItemsAdapter extends ArrayAdapter<ToDoItem> {
     public View getView(int position, View convertView, ViewGroup parent) {
         ToDoItem toDoItem = getItem(position);
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_todoitem, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.activity_single_listview_item, parent, false);
         }
         TextView title = (TextView) convertView.findViewById(R.id.title);
         title.setText(toDoItem.title);

@@ -1,32 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    >
 
-    <EditText
-        android:id="@+id/view_item_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:layout_margin="10dp" />
-
-    <EditText
-        android:id="@+id/view_item_description"
-        android:title="@string/description_hint"
+    <TextView
+        android:id="@+id/item_title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:layout_margin="10dp" />
+        android:text="@string/title_title"
+        style="?android:listSeparatorTextViewStyle"
+        />
+
+    <EditText
+        android:id="@+id/item_title_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_title_text"
+        android:hint="@string/title_hint"
+        />
+
+    <TextView
+        android:id="@+id/item_description_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_title_edit"
+        android:text="@string/description_title"
+        style="?android:listSeparatorTextViewStyle"
+        />
+
+    <EditText
+        android:id="@+id/item_description_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_description_text"
+        android:hint="@string/description_hint"
+        />
+
+    <TextView
+        android:id="@+id/item_details_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_description_edit"
+        android:text="@string/details_title"
+        style="?android:listSeparatorTextViewStyle"
+        />
 
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
+        android:id="@+id/priority_radio"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:label="@string/priority_options"
-        android:layout_margin="10dp"
-        android:orientation="vertical">
+        android:layout_below="@id/item_details_title"
+        android:layout_marginLeft="10dp"
+        android:label="@string/priority_options">
         <RadioButton android:id="@+id/radio_high"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,12 +78,65 @@
             />
     </RadioGroup>
 
+    <CheckBox
+        android:id="@+id/checkbox_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onCheckboxClicked"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:layout_below="@id/item_details_title"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="3dp"
+        />
+        <!--android:layout_alignRight="@id/checkbox_title"-->
+        <!--android:layout_alignEnd="@id/checkbox_title"-->
+
+    <TextView
+        android:id="@+id/checkbox_title"
+        android:text="@string/checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_details_title"
+        android:layout_toLeftOf="@id/checkbox_box"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/when_completed"
+        android:text="@string/when_completed_title"
+        style="?android:listSeparatorTextViewStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/checkbox_title"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="19dp"
+        />
+
+    <TextView
+        android:id="@+id/when_completed_insert"
+        android:text=""
+        android:hint="@string/when_completed_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/when_completed"
+        android:layout_alignRight="@id/checkbox_title"
+        android:layout_alignEnd="@id/checkbox_title"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        />
+
+
+
     <Button
         android:id="@+id/save_button"
-        android:text="@string/save_new_item"
-        android:layout_marginTop="25dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:text="@string/save_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/priority_radio"
+        android:layout_marginTop="15dp"
+        />
 
-
-</LinearLayout>
+</RelativeLayout>

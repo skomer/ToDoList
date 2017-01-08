@@ -34,14 +34,6 @@ public class MainActivity extends AppCompatActivity {
 
         mListView = (ListView)findViewById(R.id.todo_listview);
 
-//        ArrayAdapter<String> adapter =
-//                new ArrayAdapter<>(
-//                        this,
-//                        android.R.layout.simple_list_item_1,
-//                        setUpToDoItemStrings()
-//                );
-//
-//        mListView.setAdapter(adapter);
 
         ToDoItemsAdapter adapter =
                 new ToDoItemsAdapter(
@@ -64,20 +56,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-//    private ArrayList<String> setUpToDoItemTitles() {
-//
-//        DatabaseHandler dbHandler = new DatabaseHandler(MainActivity.this);
-//        ArrayList<String> allTitles = new ArrayList<>();
-//        ArrayList<Integer> allIds = dbHandler.getAllIds();
-//        Log.d("allIds", allIds.toString());
-//
-//        for (int i = 0; i < allIds.size(); i++) {
-//            ToDoItem item = dbHandler.getItem(i+1);
-//            allTitles.add(item.title);
-//        }
-//        return allTitles;
-//    }
 
     private ArrayList<ToDoItem> setUpToDoItemObjectsList() {
 
