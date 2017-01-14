@@ -75,4 +75,8 @@ public class ToDoItem {
         this.whenCompleted = dateNow.toString();
     }
 
+    public void clearWhenCompleted() {
+        this.whenCompleted = null;
+    }
+
 }

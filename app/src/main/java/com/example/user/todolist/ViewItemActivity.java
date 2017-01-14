@@ -151,6 +151,8 @@ public class ViewItemActivity extends AppCompatActivity {
             dateCompleted = mSelectedItem.getWhenCompleted();
             TextView whenCompletedInsert = (TextView) findViewById(R.id.when_completed_insert);
             whenCompletedInsert.setText(dateCompleted);
+        } else {
+            mSelectedItem.clearWhenCompleted();
         }
     }
 
