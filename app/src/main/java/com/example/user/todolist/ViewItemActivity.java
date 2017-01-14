@@ -21,7 +21,7 @@ public class ViewItemActivity extends AppCompatActivity {
     ToDoItem mSelectedItem;
     RadioButton mRadioButton;
     CheckBox mCompletedCheckBox;
-    CheckBox whenCompletedCheckBox;
+//    CheckBox whenCompletedCheckBox;
     String mWhenCompletedInsert;
     int mCategoryIndex;
 
@@ -63,8 +63,12 @@ public class ViewItemActivity extends AppCompatActivity {
 //        Set up whenCompleted checkbox
         String whenCompleted = mSelectedItem.whenCompleted;
         if (whenCompleted != null) {
+            mCompletedCheckBox = (CheckBox) findViewById(R.id.checkbox_box);
             mCompletedCheckBox.setChecked(true);
             mWhenCompletedInsert = mSelectedItem.getWhenCompleted();
+            TextView whenCompletedInsert = (TextView) findViewById(R.id.when_completed_insert);
+            whenCompletedInsert.setText(mWhenCompletedInsert);
+
         }
 
 
@@ -151,23 +155,23 @@ public class ViewItemActivity extends AppCompatActivity {
     }
 
 
-    public void addListenerOnCheckBox() {
-
-        whenCompletedCheckBox = (CheckBox) findViewById(R.id.checkbox_box);
-
-        whenCompletedCheckBox.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                String dateCompleted;
-                if (((CheckBox) view).isChecked()) {
-                    mSelectedItem.setWhenCompleted();
-                    dateCompleted = mSelectedItem.getWhenCompleted();
-                    TextView whenCompletedInsert = (TextView) findViewById(R.id.when_completed_insert);
-                    whenCompletedInsert.setText(dateCompleted);
-                }
-            }
-        });
-    }
+//    public void addListenerOnCheckBox() {
+//
+//        whenCompletedCheckBox = (CheckBox) findViewById(R.id.checkbox_box);
+//
+//        whenCompletedCheckBox.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View view) {
+//                String dateCompleted;
+//                if (((CheckBox) view).isChecked()) {
+//                    mSelectedItem.setWhenCompleted();
+//                    dateCompleted = mSelectedItem.getWhenCompleted();
+//                    TextView whenCompletedInsert = (TextView) findViewById(R.id.when_completed_insert);
+//                    whenCompletedInsert.setText(dateCompleted);
+//                }
+//            }
+//        });
+//    }
 
 }

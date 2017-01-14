@@ -6,10 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.CheckBox;
 
 import java.util.ArrayList;
 
-// Developed following the tutorial here: https://github.com/codepath/android_guides/wiki/Using-an-ArrayAdapter-with-ListView
+// Developed following the tutorial here:
+// https://github.com/codepath/android_guides/wiki/Using-an-ArrayAdapter-with-ListView
 public class ToDoItemsAdapter extends ArrayAdapter<ToDoItem> {
 
     public ToDoItemsAdapter(Context context, ArrayList<ToDoItem> toDoItems) {
@@ -27,6 +29,17 @@ public class ToDoItemsAdapter extends ArrayAdapter<ToDoItem> {
 
         TextView categoryTV = (TextView) convertView.findViewById(R.id.category);
         categoryTV.setText(toDoItem.getCategory());
+
+        // in here add code to build the checkbox bit
+        String whenCompleted = toDoItem.whenCompleted;
+
+        if (whenCompleted != null) {
+            CheckBox checkBox = (CheckBox) convertView.findViewById(R.id.status);
+            checkBox.setChecked(true);
+
+        }
+
+
 
         return convertView;
     }
