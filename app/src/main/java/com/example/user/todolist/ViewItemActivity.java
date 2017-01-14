@@ -146,13 +146,15 @@ public class ViewItemActivity extends AppCompatActivity {
     public void onCheckboxClicked(View view) {
 
         String dateCompleted;
+        TextView whenCompletedInsert = (TextView) findViewById(R.id.when_completed_insert);
+
         if (((CheckBox) view).isChecked()) {
             mSelectedItem.setWhenCompleted();
             dateCompleted = mSelectedItem.getWhenCompleted();
-            TextView whenCompletedInsert = (TextView) findViewById(R.id.when_completed_insert);
             whenCompletedInsert.setText(dateCompleted);
         } else {
             mSelectedItem.clearWhenCompleted();
+            whenCompletedInsert.setText("");
         }
     }
 
